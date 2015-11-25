@@ -30,11 +30,11 @@
         {
             this.WriterListBox = new System.Windows.Forms.ListBox();
             this.ReaderListBox = new System.Windows.Forms.ListBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.SyncButton = new System.Windows.Forms.RadioButton();
+            this.AsyncButton = new System.Windows.Forms.RadioButton();
             this.InputTextBox = new System.Windows.Forms.TextBox();
             this.RunButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.StatusPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,27 +62,28 @@
             this.ReaderListBox.Size = new System.Drawing.Size(177, 342);
             this.ReaderListBox.TabIndex = 1;
             // 
-            // radioButton1
+            // SyncButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(240, 49);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(111, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Syncronous Mode";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.SyncButton.AutoSize = true;
+            this.SyncButton.Location = new System.Drawing.Point(240, 49);
+            this.SyncButton.Name = "SyncButton";
+            this.SyncButton.Size = new System.Drawing.Size(111, 17);
+            this.SyncButton.TabIndex = 3;
+            this.SyncButton.TabStop = true;
+            this.SyncButton.Text = "Syncronous Mode";
+            this.SyncButton.UseVisualStyleBackColor = true;
+            this.SyncButton.CheckedChanged += new System.EventHandler(this.SyncButton_CheckedChanged);
             // 
-            // radioButton2
+            // AsyncButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(240, 72);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(116, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Asyncronous Mode";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.AsyncButton.AutoSize = true;
+            this.AsyncButton.Location = new System.Drawing.Point(240, 72);
+            this.AsyncButton.Name = "AsyncButton";
+            this.AsyncButton.Size = new System.Drawing.Size(116, 17);
+            this.AsyncButton.TabIndex = 4;
+            this.AsyncButton.TabStop = true;
+            this.AsyncButton.Text = "Asyncronous Mode";
+            this.AsyncButton.UseVisualStyleBackColor = true;
             // 
             // InputTextBox
             // 
@@ -90,22 +91,27 @@
             this.InputTextBox.Name = "InputTextBox";
             this.InputTextBox.Size = new System.Drawing.Size(164, 20);
             this.InputTextBox.TabIndex = 5;
+            this.InputTextBox.TextChanged += new System.EventHandler(this.InputTextBox_TextChanged);
             // 
             // RunButton
             // 
+            this.RunButton.Enabled = false;
             this.RunButton.Location = new System.Drawing.Point(266, 144);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(75, 23);
             this.RunButton.TabIndex = 6;
             this.RunButton.Text = "Run";
             this.RunButton.UseVisualStyleBackColor = true;
+            this.RunButton.Click += new System.EventHandler(this.RunButton_Click);
             // 
-            // panel1
+            // StatusPanel
             // 
-            this.panel1.Location = new System.Drawing.Point(252, 200);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(120, 78);
-            this.panel1.TabIndex = 7;
+            this.StatusPanel.BackColor = System.Drawing.Color.Yellow;
+            this.StatusPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.StatusPanel.Location = new System.Drawing.Point(252, 200);
+            this.StatusPanel.Name = "StatusPanel";
+            this.StatusPanel.Size = new System.Drawing.Size(120, 78);
+            this.StatusPanel.TabIndex = 7;
             // 
             // label1
             // 
@@ -125,6 +131,7 @@
             this.ClearButton.TabIndex = 9;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // label2
             // 
@@ -187,7 +194,7 @@
             this.ReceivedResultLabel.Size = new System.Drawing.Size(0, 13);
             this.ReceivedResultLabel.TabIndex = 16;
             // 
-            // Form1
+            // DefaultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -201,16 +208,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.StatusPanel);
             this.Controls.Add(this.RunButton);
             this.Controls.Add(this.InputTextBox);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.AsyncButton);
+            this.Controls.Add(this.SyncButton);
             this.Controls.Add(this.ReaderListBox);
             this.Controls.Add(this.WriterListBox);
             this.Name = "DefaultForm";
             this.Text = "Assignment 2";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DefaultForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,11 +227,11 @@
 
         private System.Windows.Forms.ListBox WriterListBox;
         private System.Windows.Forms.ListBox ReaderListBox;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton SyncButton;
+        private System.Windows.Forms.RadioButton AsyncButton;
         private System.Windows.Forms.TextBox InputTextBox;
         private System.Windows.Forms.Button RunButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel StatusPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Label label2;
