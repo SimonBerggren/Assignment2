@@ -72,7 +72,6 @@
             this.SyncButton.TabStop = true;
             this.SyncButton.Text = "Syncronous Mode";
             this.SyncButton.UseVisualStyleBackColor = true;
-            this.SyncButton.CheckedChanged += new System.EventHandler(this.SyncButton_CheckedChanged);
             // 
             // AsyncButton
             // 
@@ -106,7 +105,7 @@
             // 
             // StatusPanel
             // 
-            this.StatusPanel.BackColor = System.Drawing.Color.Yellow;
+            this.StatusPanel.BackColor = System.Drawing.Color.Transparent;
             this.StatusPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.StatusPanel.Location = new System.Drawing.Point(252, 200);
             this.StatusPanel.Name = "StatusPanel";
